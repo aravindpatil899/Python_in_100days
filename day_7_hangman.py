@@ -1,70 +1,9 @@
 #project on hang man
 """generate random word --> guess the word ..letter by letter-->for every wrong letter hangman drawing """
 import random 
-hangman =['''
-          +-----+
-          |     |
-          0     |
-         /|\    |
-         / \    |
-          ========
-          ''','''
-          +-----+
-          |     |
-          0     |
-         /|\    |
-         /      |
-          ========
-          
-                    ''',
-        '''
-          +-----+
-          |     |
-          0     |
-         /|\    |
-                |
-          ========
-          
-                    ''',
-                    '''
-          +-----+
-          |     |
-          0     |
-         /|     |
-                |
-          ========
-          
-                    ''',
-                    '''
-          +-----+
-          |     |
-          0     |
-         /      |
-                |
-          ========
-          
-                    ''',
-                    '''
-          +-----+
-          |     |
-          0     |
-                |
-                |
-          ========
-          
-                    ''',
-                    '''
-          +-----+
-          |     |
-                |
-                |
-                |
-          ========
-          
-                    ''']
+import hangman_art
+from hangman_wordlist import word_list
 
-
-word_list =['wood','paper','mobile','television']
 word = random.choice(word_list)
 word_len = len(word)
 blanks=''
@@ -92,8 +31,9 @@ while not game_over:
         lives-=1 
         if lives ==0:
             game_over=True
-            print("you loose")
+            print("=====You Loose===================")
     if "_" not in display:
         game_over =True
+        print("============You Win============ ")
     print(correct_letters)
-    print(hangman[lives])
+    print(hangman_art.hangman[lives])

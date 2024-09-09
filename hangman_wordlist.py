@@ -1,0 +1,1 @@
+word_list =['wood','paper','mobile','television']
