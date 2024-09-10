@@ -1,13 +1,18 @@
-def encoding (code,shift):
+def encoding (code,shift,encode_or_decode):
     encoded =''
     text=''
+    shift_amount=shift
+    if encode_or_decode=='decode':
+            shift_amount *= -1
     for letter in code:
-        ltr_indx = alphabets.index(letter)
-        if ltr_indx+shift>=len(alphabets):
-            encoding = alphabets[(ltr_indx+shift)-26]
-        else:
-            encoding = alphabets[ltr_indx+shift]
-        text+=encoding
+        #print(encode_or_decode)
+        ltr_indx = alphabets.index(letter)       
+        shifted_position = ltr_indx+shift_amount
+        shifted_position%=len(alphabets)       
+        text +=alphabets[shifted_position]
+        #print(encode_or_decode)
+        
+    print(text)
     return text
 alphabets = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
@@ -15,10 +20,11 @@ alphabets = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q'
 another_text='yes'
 while another_text:
     if another_text=='yes':
-        code = input('enter your message to encrypt : ')
+        code = input('enter your message to encrypt or decrypt : ')
         shift =int(input("enter shift number : "))
-        op= encoding(code,shift)
-        print(op)
+        encode_or_decode = input('do you want to encode or decode : ')
+        op= encoding(code,shift,encode_or_decode)
+        print(f'Here is the {encode_or_decode}d output : {op}')
         another_text =(input("another text.yes or no .? :")).lower()
     else:
         break
